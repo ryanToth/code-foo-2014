@@ -210,6 +210,11 @@ Page {
             layout: StackLayout { // Lay out sub items left-to-right
                 orientation: LayoutOrientation.LeftToRight
             }
+            
+            Label {
+                text: "      "
+            }
+            
             Label {
                 // Will make the description show up on multiple lines instead of being cut off
                 multiline: true

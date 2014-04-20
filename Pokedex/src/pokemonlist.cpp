@@ -107,10 +107,10 @@ int PokemonList::pokeNum() {
 	int count(0);
 	m_numberOfPokemon = 0;
 
-	QFile file("app/native/assets/data/pokemon_types.csv");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile pokemonTypesFile("app/native/assets/data/pokemon_types.csv");
+	if (pokemonTypesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&file);
+		QTextStream in(&pokemonTypesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 			if (line.split(",")[0].length() < 5 && line.split(",")[2] == "1")
@@ -126,7 +126,7 @@ int PokemonList::pokeNum() {
 	}
 
 	else {
-		cerr << "Failed to open pokemon_types.cvs: " << file.error() << endl;
+		cerr << "Failed to open pokemon_types.cvs: " << pokemonTypesFile.error() << endl;
 		exit(0);
 		//Exits the program if the file isn't found
 	}
@@ -147,10 +147,10 @@ Pokemon* PokemonList::getPokemonInfo() {
 	bool a = false;
 
 	{
-		QFile file("app/native/assets/data/pokemon_types.csv");
-		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QFile pokemonTypeFile("app/native/assets/data/pokemon_types.csv");
+		if (pokemonTypeFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-			QTextStream in(&file);
+			QTextStream in(&pokemonTypeFile);
 			while (!in.atEnd()) {
 				QString line = in.readLine();
 				if (a == true && line.split(",")[0].toInt() < 719 && i < 718) {
@@ -176,7 +176,7 @@ Pokemon* PokemonList::getPokemonInfo() {
 
 		// Gets both types for all pokemon
 		else {
-			cerr << "Failed to open pokemon_types.cvs: " << file.error()
+			cerr << "Failed to open pokemon_types.cvs: " << pokemonTypeFile.error()
 					<< endl;
 			exit(0);
 		}
@@ -184,10 +184,10 @@ Pokemon* PokemonList::getPokemonInfo() {
 
 	i = 0;
 
-	QFile fil("app/native/assets/data/pokemon_species_names.csv");
-	if (fil.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile pokemonNamesFile("app/native/assets/data/pokemon_species_names.csv");
+	if (pokemonNamesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&fil);
+		QTextStream in(&pokemonNamesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 
@@ -212,14 +212,14 @@ Pokemon* PokemonList::getPokemonInfo() {
 	// Gets the names of every pokemon
 
 	else {
-		cerr << "Failed to open pokemon_species_names.cvs: " << fil.error()
+		cerr << "Failed to open pokemon_species_names.cvs: " << pokemonNamesFile.error()
 				<< endl;
 		exit(0);
 	}
 
 	int j = 0;
 	int numberOfThisType = m_numberOfPokemon;
-
+	//If a type is selected, create new array holding only the pokemon with that type
 	if (m_typeIndex != "0") {
 		for (i = 0; i < m_numberOfPokemon; i++) {
 			if (pokemon[i].type_id_1 == m_typeIndex
@@ -240,10 +240,10 @@ Pokemon* PokemonList::getPokemonInfo() {
 	j = 0;
 
 	//Gets the stats for the pokemon that are going to be displayed in the list view
-	QFile Statsfile("app/native/assets/data/pokemon_stats.csv");
-	if (Statsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile statsFile("app/native/assets/data/pokemon_stats.csv");
+	if (statsFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&Statsfile);
+		QTextStream in(&statsFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 			if (j < numberOfThisType && line.split(",")[0] == pokemon[j].id) {
@@ -279,17 +279,17 @@ Pokemon* PokemonList::getPokemonInfo() {
 	}
 
 	else {
-		cerr << "Failed to open pokemon_stats.cvs: " << fil.error() << endl;
+		cerr << "Failed to open pokemon_stats.cvs: " << statsFile.error() << endl;
 		exit(0);
 	}
 
 	j = 0;
 
 	// Gets the heights and weights of the pokemon. If they arent in the cvs, make them "unavailable"
-	QFile file("app/native/assets/data/pokemon.csv");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile heightFile("app/native/assets/data/pokemon.csv");
+	if (heightFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&file);
+		QTextStream in(&heightFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 			if (j < numberOfThisType && line.split(",")[0] == pokemon[j].id) {
@@ -311,17 +311,17 @@ Pokemon* PokemonList::getPokemonInfo() {
 	}
 
 	else {
-		cerr << "Failed to open pokemon.cvs: " << file.error() << endl;
+		cerr << "Failed to open pokemon.cvs: " << heightFile.error() << endl;
 		exit(0);
 	}
 
 	j = 0;
 
 	// Get the ability id for each pokemnon
-	QFile iy("app/native/assets/data/pokemon_abilities.csv");
-	if (iy.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile pokemonAbilitiesFile("app/native/assets/data/pokemon_abilities.csv");
+	if (pokemonAbilitiesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&iy);
+		QTextStream in(&pokemonAbilitiesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 
@@ -341,7 +341,7 @@ Pokemon* PokemonList::getPokemonInfo() {
 	}
 
 	else {
-		cerr << "Failed to open pokemon_abilities.cvs: " << iy.error() << endl;
+		cerr << "Failed to open pokemon_abilities.cvs: " << pokemonAbilitiesFile.error() << endl;
 		exit(0);
 	}
 
@@ -351,10 +351,10 @@ Pokemon* PokemonList::getPokemonInfo() {
 	 * and make sure the whole description is added
 	 */
 
-	QFile ile("app/native/assets/data/pokemon_species_flavor_text.csv");
-	if (ile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile descriptionFile("app/native/assets/data/pokemon_species_flavor_text.csv");
+	if (descriptionFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&ile);
+		QTextStream in(&descriptionFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 
@@ -387,7 +387,7 @@ Pokemon* PokemonList::getPokemonInfo() {
 
 	else {
 		cerr << "Failed to open pokemon_species_flavor_text.cvs: "
-				<< ile.error() << endl;
+				<< descriptionFile.error() << endl;
 		exit(0);
 	}
 
@@ -403,10 +403,10 @@ Pokemon PokemonList::getTypeNames(Pokemon pokemon) {
 	type2.type = pokemon.type_id_2;
 
 	// Gets the names of each type in the selected language
-	QFile fil("app/native/assets/data/type_names.csv");
-	if (fil.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile typeNamesFile("app/native/assets/data/type_names.csv");
+	if (typeNamesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&fil);
+		QTextStream in(&typeNamesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 
@@ -438,7 +438,7 @@ Pokemon PokemonList::getTypeNames(Pokemon pokemon) {
 	}
 
 	else {
-		cerr << "Failed to open type_names.cvs: " << fil.error() << endl;
+		cerr << "Failed to open type_names.cvs: " << typeNamesFile.error() << endl;
 		exit(0);
 	}
 
@@ -481,10 +481,10 @@ Pokemon PokemonList::getAbilityAndVersionNames(Pokemon pokemon) {
 
 	QString also = QString::number(pokemon.version.toInt() + 1);
 
-	QFile il("app/native/assets/data/version_names.csv");
-	if (il.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile versionNamesFile("app/native/assets/data/version_names.csv");
+	if (versionNamesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&il);
+		QTextStream in(&versionNamesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 
@@ -499,7 +499,7 @@ Pokemon PokemonList::getAbilityAndVersionNames(Pokemon pokemon) {
 	// Get both versions that the pokemon first apeared in
 
 	else {
-		cerr << "Failed to open version_names.cvs: " << il.error() << endl;
+		cerr << "Failed to open version_names.cvs: " << versionNamesFile.error() << endl;
 		exit(0);
 	}
 
@@ -513,10 +513,10 @@ Pokemon PokemonList::getAbilityAndVersionNames(Pokemon pokemon) {
 	bool langCheck_2(false);
 
 	// Get the ability name in the selected language or in english if unavailable
-	QFile li("app/native/assets/data/ability_names.csv");
-	if (li.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile abilityNamesFile("app/native/assets/data/ability_names.csv");
+	if (abilityNamesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&li);
+		QTextStream in(&abilityNamesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 			if (line.split(",")[0] == pokemon.ability
@@ -542,7 +542,7 @@ Pokemon PokemonList::getAbilityAndVersionNames(Pokemon pokemon) {
 	}
 
 	else {
-		cerr << "Failed to open ability_names.cvs: " << li.error() << endl;
+		cerr << "Failed to open ability_names.cvs: " << abilityNamesFile.error() << endl;
 		exit(0);
 	}
 
@@ -576,10 +576,10 @@ QString PokemonList::statLang(QString statIndex) {
 	QString statName;
 	bool language_check = true;
 
-	QFile file("app/native/assets/data/stat_names.csv");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+	QFile statNamesFile("app/native/assets/data/stat_names.csv");
+	if (statNamesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 
-		QTextStream in(&file);
+		QTextStream in(&statNamesFile);
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 
@@ -599,7 +599,7 @@ QString PokemonList::statLang(QString statIndex) {
 	// Gets the stat names in different languages, defaulting to english
 
 	else {
-		cerr << "Failed to open stat_names.cvs: " << file.error() << endl;
+		cerr << "Failed to open stat_names.cvs: " << statNamesFile.error() << endl;
 		exit(0);
 	}
 
