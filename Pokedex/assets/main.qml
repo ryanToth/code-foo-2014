@@ -57,7 +57,6 @@ NavigationPane {
 
                         //contentpage.name = chosenItem.name // Set the properties. See property alias statements in itemPage.qml 
                         contentpage.type = chosenItem.type
-                        // TODO: set other stats
                         
                         contentpage.titlebar = chosenItem.titlebar;
                         contentpage.hp = chosenItem.hp;

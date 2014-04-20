@@ -21,8 +21,6 @@ Page {
     property alias specAttackLabel: specAttackLabel_label.text
     property alias specDefLabel: specDefLabel_label.text
     property alias speedLabel: speedLabel_label.text
-
-    // TODO: create other aliases that will be set from main.qml
     
     titleBar: TitleBar {
         id: titlebar
@@ -41,8 +39,7 @@ Page {
                 id: type_label // Name this as type_label so that the property alias above can set the text property of this item
             } 
         }
-        
-        // TODO: Add other containers to display other stats of the pokemon
+
         Container { // Make a container to show pokemon ability
             layout: StackLayout { // Lay out sub items left-to-right
                 orientation: LayoutOrientation.LeftToRight

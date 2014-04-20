@@ -6,12 +6,10 @@
 
 //Pokedex
 
-namespace bb
-{
-    namespace cascades
-    {
-        class Application;
-    }
+namespace bb {
+namespace cascades {
+class Application;
+}
 }
 
 /*!
@@ -19,23 +17,25 @@ namespace bb
  *
  *
  */
-class PokemonList; // forward declaration to avoid including header
+class PokemonList;
+// forward declaration to avoid including header
 
-class ApplicationUI : public QObject
-{
-    Q_OBJECT
+class ApplicationUI: public QObject {
+	Q_OBJECT
 public:
-    ApplicationUI(bb::cascades::Application *app);
-    // callables from QML
-    Q_INVOKABLE void typeSelected(int type);
-    Q_INVOKABLE void languageSelected(int language);
+	ApplicationUI(bb::cascades::Application *app);
+	// callables from QML
+	Q_INVOKABLE
+	void typeSelected(int type);Q_INVOKABLE
+	void languageSelected(int language);
 
-    void init(); //init() member function
-    bb::cascades::AbstractPane *root; //root member variable
+	void init(); //init() member function
+	bb::cascades::AbstractPane *root; //root member variable
 
-    virtual ~ApplicationUI() { }
+	virtual ~ApplicationUI() {
+	}
 private:
-    PokemonList *m_pokemonList;
+	PokemonList *m_pokemonList;
 };
 
 #endif /* ApplicationUI_H_ */
