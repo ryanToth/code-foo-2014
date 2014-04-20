@@ -2,6 +2,9 @@
 #define ApplicationUI_H_
 
 #include <QObject>
+#include <bb/cascades/AbstractPane>
+
+//Pokedex
 
 namespace bb
 {
@@ -26,6 +29,9 @@ public:
     // callables from QML
     Q_INVOKABLE void typeSelected(int type);
     Q_INVOKABLE void languageSelected(int language);
+
+    void init(); //init() member function
+    bb::cascades::AbstractPane *root; //root member variable
 
     virtual ~ApplicationUI() { }
 private:
