@@ -8,12 +8,12 @@ import java.io.FileNotFoundException;
  */
 public class Crossword {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws FileNotFoundException {
-        // TODO code application logic here
-        WordLayout crossword = new WordLayout();
-    }
+    //The main method to demonstarte functionality
     
+    public static void main(String[] args) throws FileNotFoundException {
+        
+        //WordLayout crossword = new WordLayout();
+        new CrosswordGUI(20,20,null,"numbers");
+    }
+
 }
