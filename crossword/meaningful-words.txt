@@ -1,24 +1,23 @@
-Percussion
-Guitar
-Casey
-LegendOfZelda
-Nintendo
-PuertoVallarta
-Bradford
-Canada
-JoAnne
-Leslie
-Western
-Engineering
-Lego
-FloridaPanthers
-Macintosh
-Hockey
-Mythbusters
-Fletcher
-Bioshock
-PhillyD
-RootBeer
-Baseball
-Sushi
-
+Percussion, Instrument I play
+Guitar, Stringed instrument I play
+Casey, My girlfriend’s name
+LegendOfZelda, My favourite game series
+Nintendo, My favourite video game company
+PuertoVallarta, My favourite place to travel
+Bradford, My hometown
+Canada, Where I’m from
+JoAnne, My mom’s name
+Leslie, My dad’s name
+Western, My school
+Engineering, My school program
+Lego, Cool stuff to build with
+FloridaPanthers, My favourite hockey team
+Macintosh, The type of computer I have
+Hockey, My favourite sport
+Mythbusters, My favourite TV show
+Fletcher, My first dog’s name
+Bioshock, My favourite non-nintendo video game series
+PhillyD, My favourite Youtuber
+RootBeer, My favourite soft drink
+Baseball, My second favourite sport
+Sushi, My favourite food

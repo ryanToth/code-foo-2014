@@ -10,13 +10,15 @@ public class Word implements Comparable {
     
     String orientation = null; //either "vertical" or "horizontal" to show how the word is oriented in the crossword
     String word = null;
+    String clue = null;
     LinkedList<Letter> letters = new LinkedList<>(); //A list of the letters that are in this word in the correct order
     int[] startIndex = new int[2]; //The coordinates in the crossword array where the word begins, where the first letter exists
     int[] endIndex = new int[2]; //The coordinates in the crossword arraw where the word ends, where tha last letter exists
     
-    public Word(String word) {
+    public Word(String word, String clue) {
         
         this.word = word;
+        this.clue = clue;
         
         //adds the words letters to the list and makes them upper case
         for(int i = 1; i < word.length() + 1; i++) {

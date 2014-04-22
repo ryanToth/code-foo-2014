@@ -38,13 +38,19 @@ public class WordLayout {
             InputStream configStream = getClass().getResourceAsStream(fileToGetWordsFrom);
             BufferedReader configReader = new BufferedReader(new InputStreamReader(configStream, "UTF-8"));
             
-            while(configReader.ready()) 
-                words.add(new Word(configReader.readLine()));
+            while(configReader.ready())  {
+                String line = configReader.readLine();
+                
+                if(line.split(", ").length > 1)
+                    words.add(new Word(line.split(", ")[0],line.split(", ")[1]));
+                else
+                    words.add(new Word(line.split(", ")[0],line.split(", ")[0]));
+            }
             
             configReader.close();
             buildLayout();
-
         }
+        
         catch (Exception e) {
             System.out.println(e + ": System shut down");
             System.exit(0);
@@ -209,7 +215,7 @@ public class WordLayout {
         while(itr.hasNext()) {
             Word tmp = (Word)itr.next();
             acrossWords += tmp.letters.get(0).wordNumber + ". "
-                    + tmp + "\n";
+                    + tmp.clue + "\n";
         }
         
         itr = down.iterator();
@@ -217,7 +223,7 @@ public class WordLayout {
         while(itr.hasNext()) {
             Word tmp = (Word)itr.next();
             downWords += tmp.letters.get(0).wordNumber + ". "
-                    + tmp + "\n";
+                    + tmp.clue + "\n";
         }
         
         return acrossWords + "\n\n" + downWords;

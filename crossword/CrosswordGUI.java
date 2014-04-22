@@ -157,8 +157,9 @@ public class CrosswordGUI extends JFrame {
             textArea.setEditable(false);
             JScrollPane scroller = new JScrollPane(textArea);
             frame.add(scroller);
-            frame.setSize(160, 550);
-            frame.setLocation(240,130);
+            //frame.setSize(160, 550);
+            frame.pack();
+            frame.setLocation(1080,130);
             frame.setVisible(true);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setTitle("Word Clues");
