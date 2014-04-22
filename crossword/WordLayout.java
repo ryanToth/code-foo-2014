@@ -1,7 +1,10 @@
 package crossword;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -32,16 +35,16 @@ public class WordLayout {
         
         //The list of words available to use in the crossword are gotten here
         try {
-        File file = new File(fileToGetWordsFrom);
+            InputStream configStream = getClass().getResourceAsStream(fileToGetWordsFrom);
+            BufferedReader configReader = new BufferedReader(new InputStreamReader(configStream, "UTF-8"));
+            
+            while(configReader.ready()) 
+                words.add(new Word(configReader.readLine()));
+            
+            configReader.close();
+            buildLayout();
 
-        Scanner scn = new Scanner(file);
-        
-        while(scn.hasNext()) 
-            words.add(new Word(scn.next()));
-        //The structure of the crossword is built here
-        buildLayout();
         }
-        
         catch (Exception e) {
             System.out.println(e + ": System shut down");
             System.exit(0);
