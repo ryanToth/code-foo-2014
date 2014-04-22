@@ -6,7 +6,7 @@ import java.util.LinkedList;
  *
  * @author Ryan
  */
-public class Word {
+public class Word implements Comparable {
     
     String orientation = null; //either "vertical" or "horizontal" to show how the word is oriented in the crossword
     String word = null;
@@ -203,5 +203,18 @@ public class Word {
             }
         }
         return null;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        
+        Word other = (Word)o;
+        
+        if (Integer.parseInt(letters.get(0).wordNumber) < Integer.parseInt(other.letters.get(0).wordNumber))
+            return -1;
+        else if (letters.get(0).wordNumber.equals(other.letters.get(0).wordNumber))
+            return 0;
+        else return 1;
+        
     }
 }

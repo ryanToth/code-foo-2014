@@ -1,12 +1,12 @@
 package crossword;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.TreeSet;
 
 /**
  *
@@ -190,17 +190,36 @@ public class WordLayout {
         
         String acrossWords = "Across\n\n";
         String downWords = "Down\n\n";
+        TreeSet<Word> across =  new TreeSet<>();
+        TreeSet<Word> down =  new TreeSet<>();
         
+        //Adds the words into a set that orders, making sure that they are in ascending order
+        //when the clues are displayed
         for (int i = 0; i < usedWords.size(); i++) {
             
             if (usedWords.get(i).orientation == "horizontal")
-                acrossWords += usedWords.get(i).letters.get(0).wordNumber + ". " 
-                        + usedWords.get(i) + "\n";
+                across.add(usedWords.get(i));
             
             else
-                downWords += usedWords.get(i).letters.get(0).wordNumber + ". " 
-                        + usedWords.get(i) + "\n";
+                down.add(usedWords.get(i));
         }
+        
+        Iterator itr = across.iterator();
+        
+        while(itr.hasNext()) {
+            Word tmp = (Word)itr.next();
+            acrossWords += tmp.letters.get(0).wordNumber + ". "
+                    + tmp + "\n";
+        }
+        
+        itr = down.iterator();
+        
+        while(itr.hasNext()) {
+            Word tmp = (Word)itr.next();
+            downWords += tmp.letters.get(0).wordNumber + ". "
+                    + tmp + "\n";
+        }
+        
         return acrossWords + "\n\n" + downWords;
     }
 }
