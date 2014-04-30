@@ -13,7 +13,7 @@ public class Crossword {
     public static void main(String[] args) throws FileNotFoundException {
         
         //WordLayout crossword = new WordLayout();
-        new CrosswordGUI(20,20,null,"numbers");
+        new CrosswordGUI(20,20,null,"numbers",false,null);
     }
 
 }
