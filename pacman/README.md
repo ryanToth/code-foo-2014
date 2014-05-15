@@ -1,1 +1,1 @@
-This is a simple pac-man game with out the pellets that make the ghosts turn blue and without the  fruit. Once either all the pellets are collected or the player runs out of all 3 lives, the game is over.
+This is a simple pac-man game without the pellets that make the ghosts turn blue and without the  fruit. Once either all the pellets are collected or the player runs out of all 3 lives, the game is over.
