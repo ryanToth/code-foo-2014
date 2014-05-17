@@ -8,7 +8,7 @@ Question #2: Gamers_In_San_Fran.html,
 Question #3: crossword folder,
 Question #4: N/A,
 Question #5: pacman folder,
-Question #6: Pokedex folder
+Question #6: Pokedex folder and shooter folder (shooter is the Galaga-like game I mentioned in my intro video)
 
 
 
