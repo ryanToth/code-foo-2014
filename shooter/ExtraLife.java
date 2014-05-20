@@ -21,30 +21,37 @@ import javax.swing.Timer;
  */
 public class ExtraLife implements ActionListener {
 
-    double x, y, velx = 0, vely = 0;
+    double x, y, velx = 0, vely;
     Timer t;
     GameBoard game;
     
     public ExtraLife(GameBoard game, int level) {
-        this.game = game;
         
+        this.game = game;
         x = game.getWidth()-1;
-        y = 400;
+        y = Math.random()*400+70;
         velx = -1.3 - level/10;
         t = game.t;
+        
+        if ((Math.random()*100) <= 45)
+            vely = Math.random()*1.5 + 0.5;
+        else vely = 0;
     }
             
     @Override
     public void actionPerformed(ActionEvent e) {
         
         x += velx;
-        
-        if (y <= 60)    
-            vely = 1.5;
-        if (y >= game.getHeight()-30)
-            vely = -1.5;
-        
         y += vely;
+        
+        if (y <= 69) {    
+            vely = -vely;
+            y = 70;
+        }
+        if (y >= game.getHeight()- 40) {
+            vely = -vely;
+            y = game.getHeight()- 41;
+        }
     }
     
     public void paint(Graphics g) {

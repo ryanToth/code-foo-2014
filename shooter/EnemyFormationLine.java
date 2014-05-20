@@ -24,11 +24,11 @@ public class EnemyFormationLine extends EnemyFormation {
         //Middle Enemy
         enemies[0] = new Enemy(game.getWidth()-1,middleEnemy,1.3+level/10,game.t);
         //Bottom Guys
-        enemies[1] = new Enemy(game.getWidth()+49,middleEnemy,1.3+level/10,game.t);
-        enemies[2] = new Enemy(game.getWidth()+99,middleEnemy,1.3+level/10,game.t);        
+        enemies[1] = new Enemy(game.getWidth()+44,middleEnemy,1.3+level/10,game.t);
+        enemies[2] = new Enemy(game.getWidth()+94,middleEnemy,1.3+level/10,game.t);        
         //Top Guys
-        enemies[3] = new Enemy(game.getWidth()+149,middleEnemy,1.3+level/10,game.t);
-        enemies[4] = new Enemy(game.getWidth()+199,middleEnemy,1.3+level/10,game.t);
+        enemies[3] = new Enemy(game.getWidth()+144,middleEnemy,1.3+level/10,game.t);
+        enemies[4] = new Enemy(game.getWidth()+194,middleEnemy,1.3+level/10,game.t);
     }
     
     @Override

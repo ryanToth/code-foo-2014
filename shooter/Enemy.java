@@ -7,7 +7,6 @@
 package shooter;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -23,6 +22,8 @@ import javax.swing.Timer;
 public class Enemy implements ActionListener {
 
     double x = 0, y = 0, vely = 0, velx = 0;
+    boolean dead = false, remove = false, beginCount = false;
+    long explosion = 0;
     Timer t;
     
     public Enemy(double x, double y, double velx, Timer t) {
@@ -37,13 +38,34 @@ public class Enemy implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         x += velx;
         y+= vely;
+        
+        if (dead && !beginCount) {
+            beginCount = true;
+            explosion = System.currentTimeMillis();
+        }
+        
+        if (dead && System.currentTimeMillis() - explosion > 50) remove = true;
+        
     }
     
     public void paint(Graphics g) {
         
-        URL imageurl = getClass().getResource("/shooter/magikarp.jpg");
+        URL imageurl;
+        int size;
+        int offset = 0;
+        
+        if (!dead) {
+            imageurl = getClass().getResource("/shooter/magikarp.jpg");
+            size = 60;
+        }
+        else {
+            imageurl = getClass().getResource("/shooter/boom.jpg");
+            size = 40;
+            offset = 10;
+        }
+        
         Image background = Toolkit.getDefaultToolkit().getImage(imageurl);
-        g.drawImage(background, (int)x,(int)y,60,60, null);
+        g.drawImage(background, (int)x+offset,(int)y+offset,size,size, null);
         
     }
     

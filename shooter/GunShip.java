@@ -41,9 +41,9 @@ public class GunShip implements KeyListener, ActionListener{
     private Image cloud;
     
     public GunShip(GameBoard game) {
+        
         this.game = game;
-        t = new Timer(5,this);
-        t.start();
+        t = game.t;
     }
     
     @Override
@@ -159,45 +159,52 @@ public class GunShip implements KeyListener, ActionListener{
     public void paint(Graphics g) {
 
         URL spriteurl;
+        URL ballurl;
+        Image ball = null;
         
         try {
-            if (!chargingSprite) {
-                if (System.currentTimeMillis() - spriteTimeChange < 40) {
-                    spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite.jpg");
-                    sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
-                }
-                else if (System.currentTimeMillis() - spriteTimeChange < 80) {
-                    spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite 3.png");
-                    sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
-                }
-                else if (System.currentTimeMillis() - spriteTimeChange < 120) {
-                    spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite 2.png");
-                    sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
-                }
-                else if (System.currentTimeMillis() - spriteTimeChange >= 160){
-                    spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite 3.png");
-                    sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
-                    
-                    if (System.currentTimeMillis() - spriteTimeChange >= 200)
-                        spriteTimeChange = System.currentTimeMillis();
+            
+            if (System.currentTimeMillis() - spriteTimeChange < 40) {
+                spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite.jpg");
+                sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
+            } else if (System.currentTimeMillis() - spriteTimeChange < 80) {
+                spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite 3.png");
+                sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
+            } else if (System.currentTimeMillis() - spriteTimeChange < 120) {
+                spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite 2.png");
+                sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
+            } else if (System.currentTimeMillis() - spriteTimeChange >= 160) {
+                spriteurl = getClass().getResource("/shooter/Not Shooting Goku Sprite 3.png");
+                sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
+
+                if (System.currentTimeMillis() - spriteTimeChange >= 200) {
+                    spriteTimeChange = System.currentTimeMillis();
                 }
             }
-            else if (chargedShotReady) {
+
+            if (chargedShotReady) {
                 
                 if (System.currentTimeMillis() - spritePulseTime < 60)
-                    spriteurl = getClass().getResource("/shooter/Shooting Goku Sprite.jpg");
+                    ballurl = getClass().getResource("/shooter/Shooting Goku Sprite.jpg");
                 else {
-                    spriteurl = getClass().getResource("/shooter/Shooting Goku Sprite Pulse.jpg");
+                    ballurl = getClass().getResource("/shooter/Shooting Goku Sprite Pulse 3.jpg");
                     
                     if (System.currentTimeMillis() - spritePulseTime >= 120)
                         spritePulseTime = System.currentTimeMillis();
                 }
                 
-                sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
+                ball = Toolkit.getDefaultToolkit().getImage(ballurl);
             }
             else {
-                spriteurl = getClass().getResource("/shooter/Shooting Goku Sprite Pulse.jpg");
-                sprite = Toolkit.getDefaultToolkit().getImage(spriteurl);
+                if (System.currentTimeMillis() - chargeTime < 267)
+                    ballurl = getClass().getResource("/shooter/Shooting Goku Sprite Pulse 1.jpg");
+                else if (System.currentTimeMillis() - chargeTime < 533)
+                    ballurl = getClass().getResource("/shooter/Shooting Goku Sprite Pulse 2.jpg");
+                else
+                    ballurl = getClass().getResource("/shooter/Shooting Goku Sprite Pulse 3.jpg");
+                
+                
+                ball = Toolkit.getDefaultToolkit().getImage(ballurl);
             }
             
             URL imageurl = getClass().getResource("/shooter/cloud.png");
@@ -208,10 +215,11 @@ public class GunShip implements KeyListener, ActionListener{
             System.out.println("Error: Image Not Found");
         }
         
-        if (!chargingSprite)
-            g.drawImage(sprite,(int)x,(int)y,55,70,null);
-        else
-            g.drawImage(sprite,(int)x,(int)y,77,70,null);
+        
+        g.drawImage(sprite,(int)x,(int)y,55,70,null);
+        
+        if (chargingSprite || chargedShotReady)
+            g.drawImage(ball,(int)x,(int)y,77,70,null);
         
         g.drawImage(cloud,(int)x-10,(int)y+62,66,27,null);
 
