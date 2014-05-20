@@ -235,9 +235,11 @@ public class GameBoard extends JPanel implements ActionListener {
 
         if (!pause) {
             
+            double enemyWait = 1500 / (waveNumber / 10 + 1.3);
+            
             gunShip.actionPerformed(e);
             
-            if (waveNumber % 5 == 0 && !bossFight && System.currentTimeMillis() - waveTime > waveDuration + 6000) {
+            if (waveNumber % 5 == 0 && !bossFight && System.currentTimeMillis() - newWavePause > 4000) {
                 boss = new Boss(t, waveNumber);
                 bossFight = true;
             }
@@ -326,7 +328,6 @@ public class GameBoard extends JPanel implements ActionListener {
                 }
             }
 
-            double enemyWait = 1500 / (waveNumber / 10 + 1.3);
 
             if (!bossFight && System.currentTimeMillis() - start > enemyWait && !newWave) {
 
