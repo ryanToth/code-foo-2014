@@ -239,7 +239,7 @@ public class GameBoard extends JPanel implements ActionListener {
             
             gunShip.actionPerformed(e);
             
-            if (waveNumber % 5 == 0 && !bossFight && System.currentTimeMillis() - newWavePause > 4000) {
+            if (waveNumber % 5 == 0 && !bossFight && System.currentTimeMillis() - newWavePause >= 3500) {
                 boss = new Boss(t, waveNumber);
                 bossFight = true;
             }
