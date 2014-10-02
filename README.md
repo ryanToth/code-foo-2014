@@ -10,5 +10,3 @@ Question #4: N/A,
 Question #5: pacman folder,
 Question #6: Pokedex folder and shooter folder (shooter is the Galaga-like game I mentioned in my intro video)
 
-UPDATE: Just recently tested the .jar files on a PC and noticed that they do not perform as well as some aspects of the codes seem to be missing/not working properly. For best results run on a mac. I am sorry if this has caused any confusion.
-
